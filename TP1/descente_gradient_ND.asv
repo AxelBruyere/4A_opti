@@ -1,0 +1,18 @@
+function [xk,fk] = descente_gradient_ND(f,f_prime,pas,nb_iter)
+
+%Sélection au hasard d'un x de départ de notre algorithme
+[a,b] = size(f);
+xk = floor((b-a).*rand(3,3) + a);
+%Compteur d'itérations pour limiter les boucles infinies
+k = 0;
+
+%Tant que l'on a pas effectué le max d'itération demandé et que la norme du
+%gradient est supérieure 
+while (norm(f_prime(xk)) > 0.01 && k < nb_iter)
+    xk = xk - (pas * f_prime(xk)) ;
+    k = k + 1;
+end
+
+k
+fk = f(xk)
+end
